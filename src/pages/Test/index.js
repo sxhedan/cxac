@@ -13,6 +13,7 @@ function Test() {
     }));
 
     const fetchDescription = async () => {
+      /*
       await fetch("https://azuredragon.noopsbycertik.com/shield/status", {
         method: "GET"
       })
@@ -29,6 +30,17 @@ function Test() {
             description: "failed"
           }));
         });
+      */
+      const response = await fetch("https://azuredragon.noopsbycertik.com/shield/status", {
+        method: "GET"
+      });
+      if (response.ok && response.status === 200) {
+        const responseJSON = await response.json();
+        setState(prevState => ({
+          ...prevState,
+          description: JSON.stringify(responseJSON)
+        }));
+      }
     };
     fetchDescription();
   }, []);
