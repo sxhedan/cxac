@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import eccPath from "../../docs/elliptic_curve_cryptography.md";
 
 function Test() {
   const [state, setState] = useState({
-    count: 0,
     description: "Empty"
   });
   
   useEffect(() => {
-    setState(prevState => ({
-      ...prevState,
-      count: 1
-    }));
-
     const fetchDescription = async () => {
-      /*
-      await fetch("https://azuredragon.noopsbycertik.com/shield/status", {
-        method: "GET"
-      })
-        .then(res => res.json())
-        .then(res => {
+      await fetch(eccPath)
+        .then(res => res.text())
+        .then(text => {
           setState(prevState => ({
             ...prevState,
-            description: JSON.stringify(res)
+            description: text
           }));
         },
         err => {
@@ -30,17 +23,6 @@ function Test() {
             description: "failed"
           }));
         });
-      */
-      const response = await fetch("https://azuredragon.noopsbycertik.com/shield/status", {
-        method: "GET"
-      });
-      if (response.ok && response.status === 200) {
-        const responseJSON = await response.json();
-        setState(prevState => ({
-          ...prevState,
-          description: JSON.stringify(responseJSON)
-        }));
-      }
     };
     fetchDescription();
   }, []);
@@ -48,10 +30,7 @@ function Test() {
   return (
     <div>
       <div class="container">
-        Test: {state.count}
-      </div>
-      <div class="container">
-        Description: {state.description}
+        <ReactMarkdown source={state.description} />
       </div>
     </div>
   );
