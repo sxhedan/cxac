@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import MarkdownRender from "../../utils/react-markdown-mathjax.js";
 import eccPath from "../../docs/elliptic_curve_cryptography.md";
 
