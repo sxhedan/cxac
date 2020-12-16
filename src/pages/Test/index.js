@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import MarkdownRender from "../../utils/react-markdown-mathjax.js";
 import eccPath from "../../docs/elliptic_curve_cryptography.md";
 
 function Test() {
@@ -30,7 +31,7 @@ function Test() {
   return (
     <div>
       <div class="container">
-        <ReactMarkdown source={state.description} />
+        <MarkdownRender source={state.description} />
       </div>
     </div>
   );
